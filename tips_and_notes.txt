@@ -1,0 +1,19 @@
+npm add @types/express -D in case you see ... below the word "express"
+
+to create a migration:
+npm run typeorm migration:create -- -n NAMEofCONNECTIONS -> to generate migration
+
+to execute the migration:
+npm run typeorm migration:run
+
+to revert:
+npm run typeorm migration:revert
+
+inside the migration file, you start developing the settings
+
+to see the SQlite do cntrl+shift+P
+SQlite Open Database and in the right-most down corner, you'll see the sqlite explorer
+
+Structure everything, split the controllers, the entities and the repository. Organization is key!
+
+everytime you create a migration and you build the script, dont forget to run the migration!
