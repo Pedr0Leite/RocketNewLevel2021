@@ -1,14 +1,18 @@
 import { Request, Response } from "express";
 import { MessagesService } from "../services/MessagesService";
 
-class MessageController {
+class MessagesController {
   async create(req: Request, res: Response) {
-    const {  } = req.body;
+    const { admin_id, text, user_id } = req.body;
 
     const messagesService = new MessagesService();
 
     try{
-    const messages = await messagesService.create({  });
+    const messages = await messagesService.create({ 
+      admin_id,
+      text,
+      user_id
+     });
 
     return res.json(messages);
 
@@ -19,6 +23,20 @@ class MessageController {
     }
         
   }
+
+  //localhost:1337/messages/idOfUser
+  async showByUser(req: Request, res: Response){
+    const { id } = req.params;
+
+    const messagesService = new MessagesService();
+
+    const list = await messagesService.listByUser(id);
+
+    return res.json(list);
+  }
+
+
+
 }
 
-export { MessageController };
+export { MessagesController };

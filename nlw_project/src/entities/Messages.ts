@@ -19,7 +19,7 @@ class Message{
     user:User;
 
     @Column()
-    user_id: boolean;
+    user_id: string;
 
     @CreateDateColumn()
     created_at: Date;
