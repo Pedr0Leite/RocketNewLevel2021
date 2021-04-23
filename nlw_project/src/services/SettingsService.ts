@@ -1,5 +1,5 @@
 import { getCustomRepository, Repository } from "typeorm";
-import { Settings } from "../entities/Settings";
+import { Settings } from "../entities/Setting";
 import { SettingsRepository } from "../repositories/SettingsRepository";
 
 interface ISettingsCreate {
@@ -32,6 +32,15 @@ class SettingsService {
     });
 
     await this.settingsRepository.save(settings);
+
+    return settings;
+  }
+
+  async findByUserName(username: string){
+    const settings = await this.settingsRepository.findOne({
+      username
+    })
+    return settings;
   }
 }
 
