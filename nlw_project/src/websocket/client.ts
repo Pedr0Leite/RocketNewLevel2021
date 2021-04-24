@@ -70,11 +70,12 @@ io.on("connect", (socket) => {
 
     const socket_id = socket.id
 
-    const { user_id } = await connectionsService.findBySocketID(socket_id);
+    const connection = await connectionsService.findBySocketID(socket_id);
 
     const message = await messagesService.create({
       text,
-      user_id
+      user_id: connection.user_id,
+      admin_id: socket_id
     });
 
     io.to(socket_admin_id).emit("admin_receive_message", {
